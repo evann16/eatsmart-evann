@@ -1,6 +1,6 @@
 # **Projet : EatSmart**
 
-**Etudiant :** (Nom des étudiants)
+**Etudiant :** Evann FAVIER
 
 ---
 
