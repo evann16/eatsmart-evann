@@ -34,7 +34,7 @@ EatSmart est une application permettant aux clients de passer des commandes dans
 
 ### **4. Technologies utilisées**
 
-- **Frontend :** Html, css, js, php
+- **Frontend :** HTML, CSS, JS, PHP
 - **Backend :** PHP, API-REST
-- **Base de données : MySQL
+- **Base de données** : MYSQL
 ---
