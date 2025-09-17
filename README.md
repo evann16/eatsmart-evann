@@ -6,7 +6,7 @@
 
 ### **1. Description du projet**
 
-(Complétez ici avec la description du projet présentée en classe.)
+EatSmart est une application permettant aux clients de passer des commandes dans des restaurants et de se faire livrer.
 
 <img src="./assets/img/IMG_20250917_140738712~2.jpg">
 
@@ -17,25 +17,24 @@
 #### **3.1 Frontend (eatSmartFront)**
 
 - **Fonctionnalité 1 :**  
-  (Décrivez ici la première fonctionnalité du front-office.)
+  Commander a manger
   
 - **Fonctionnalité 2 :**  
-  (Décrivez ici la deuxième fonctionnalité du front-office.)
+  Se faire livrer
   
 #### **3.2 Backend (eatSmartBack)**
 
 - **Fonctionnalité 1 :**  
-  (Décrivez ici la première fonctionnalité du back-office.)
+  Gestion des menus
   
 - **Fonctionnalité 2 :**  
-  (Décrivez ici la deuxième fonctionnalité du back-office.)
+  Historique de commandes
 
 ---
 
 ### **4. Technologies utilisées**
 
-- **Frontend :** (Technologies prévues)
-- **Backend :** (Technologies prévues)
-- **Base de données :** (Technologies prévues)
-
+- **Frontend :** Html, css, js, php
+- **Backend :** PHP, API-REST
+- **Base de données : MySQL
 ---
