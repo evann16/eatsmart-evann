@@ -8,6 +8,8 @@
 
 (Complétez ici avec la description du projet présentée en classe.)
 
+<img src="./assets/img/IMG_20250917_140738712~2.jpeg">
+
 ---
 
 ### **3. Fonctionnalités principales**
