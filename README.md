@@ -38,3 +38,8 @@ EatSmart est une application permettant aux clients de passer des commandes dans
 - **Backend :** PHP, API-REST
 - **Base de données** : MYSQL
 ---
+
+### **Creation du MCD MLD EatSmart**
+
+<img src="./assets/img/Capture.PNG">
+
