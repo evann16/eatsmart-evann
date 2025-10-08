@@ -18,8 +18,11 @@ else {
 
     switch($url[0]) {
         case "articles" : 
+
             if (isset($url[1])) {
+
                 $articleController->getArticleById($url[1]);
+
             } if (isset($url[2])=="commandes"){
                 
                 $commandeIds = $articleController->getCommandeByArticleId($url[1]);
@@ -44,6 +47,16 @@ else {
         case "commandes" : 
             if (isset($url[1])) {
                 $commandeController->getCommandeById($url[1]);
+            } if (isset($url[2])=="articles"){
+                
+                $articleIds = $commandeController->getArticleByCommandeId($url[1]);
+                    
+                foreach ($articleIds as $articleId) {
+                    
+                    $articleController->getArticleById($articleId);
+
+                } 
+
             } else {
                 print_r($commandeController->getAllCommandes());
             }
