@@ -1,4 +1,4 @@
-# **Projet : Eat Smart**
+# **Projet : Eat-Smart**
 
 **Etudiant :** Evann FAVIER
 
