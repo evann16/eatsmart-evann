@@ -19,7 +19,7 @@ else {
     switch($url[0]) {
         case "articles" : 
             if (isset($url[1])) {
-                echo "Afficher les informations de l'article : ". $url[1];
+                $articleController->getArticleById($url[1]);
             } else {
                 print_r($articleController->getAllArticles());
             }

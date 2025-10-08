@@ -13,9 +13,17 @@ class ArticleModel
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
+    
     public function getDBAllArticles()
     {
         $stmt = $this->pdo->query("SELECT * FROM Article");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getDBArticleById($idArticle){
+        $stmt = $this->pdo->prepare("SELECT * FROM Article WHERE id_article = :idArticle");
+        $stmt->bindValue(":idArticle", $idArticle, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
