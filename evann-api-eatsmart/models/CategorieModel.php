@@ -13,9 +13,17 @@ class CategorieModel
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
+    
     public function getDBAllCategories()
     {
         $stmt = $this->pdo->query("SELECT * FROM Categorie");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getDBCategorieById($idCategorie){
+        $stmt = $this->pdo->prepare("SELECT * FROM Categorie WHERE id_categorie = :idCategorie");
+        $stmt->bindValue(":idCategorie", $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

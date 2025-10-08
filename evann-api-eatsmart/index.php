@@ -26,7 +26,7 @@ else {
             break;
         case "categories" : 
             if (isset($url[1])) {
-                echo "Afficher les informations de la categorie : ". $url[1];
+                $categorieController->getCategorieById($url[1]);
             } else {
                 print_r($categorieController->getAllCategories());
             }
