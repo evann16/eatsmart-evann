@@ -26,4 +26,11 @@ class ArticleModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getDBCommandeByArticleId($idArticle) {
+        $stmt = $this->pdo->prepare("SELECT id_commande FROM assoc_article_commande WHERE id_article = :idArticle");
+        $stmt->bindValue(":idArticle", $idArticle, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }

@@ -21,4 +21,9 @@ class ArticleController
         $lignesArticles = $this->model->getDBArticleById($idArticle);
         echo json_encode($lignesArticles);
     }
+
+    public function getCommandeByArticleId ($idArticle){
+        $commandeId = $this->model->getDBcommandeByArticleId($idArticle);
+        return $commandeId;
+    }
 }

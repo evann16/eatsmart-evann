@@ -20,6 +20,14 @@ else {
         case "articles" : 
             if (isset($url[1])) {
                 $articleController->getArticleById($url[1]);
+            } if (isset($url[2])=="commandes"){
+                
+                $commandeIds = $articleController->getCommandeByArticleId($url[1]);
+                    
+                foreach ($commandeIds as $commandeId) {
+                    $commandeController->getCommandeById($commandeId);
+                }
+                
             } else {
                 print_r($articleController->getAllArticles());
             }
