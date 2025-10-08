@@ -21,4 +21,9 @@ class CategorieController
         $lignesCategories = $this->model->getDBCategorieById($idCategorie);
         echo json_encode($lignesCategories);
     }
+
+    public function getArticleByCategorieId ($idCategorie){
+        $lignesCategories = $this->model->getDBArticleByCategorieId($idCategorie);
+        echo json_encode($lignesCategories);
+    }
 }

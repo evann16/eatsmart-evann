@@ -27,6 +27,8 @@ else {
         case "categories" : 
             if (isset($url[1])) {
                 $categorieController->getCategorieById($url[1]);
+            } if (isset($url[2])=="artcles"){
+                $categorieController->getArticleByCategorieId($url[1]);
             } else {
                 print_r($categorieController->getAllCategories());
             }
