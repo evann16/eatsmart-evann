@@ -13,9 +13,17 @@ class CommandeModel
             die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
+    
     public function getDBAllCommandes()
     {
         $stmt = $this->pdo->query("SELECT * FROM Commande");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getDBCommandeById($idCommande){
+        $stmt = $this->pdo->prepare("SELECT * FROM Commande WHERE id_commande = :idCommande");
+        $stmt->bindValue(":idCommande", $idCommande, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

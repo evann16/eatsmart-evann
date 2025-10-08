@@ -33,7 +33,7 @@ else {
             break;
         case "commandes" : 
             if (isset($url[1])) {
-                echo "Afficher les informations de la commande : ". $url[1];
+                $commandeController->getCommandeById($url[1]);
             } else {
                 print_r($commandeController->getAllCommandes());
             }
