@@ -33,4 +33,45 @@ class CategorieModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function createDBCategorie($data){
+        $req = "INSERT INTO categorie (id_categorie, nom)
+                VALUES (:id_categorie, :nom)";
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindParam(":id_categorie", $data['id_categorie'], PDO::PARAM_INT);
+        $stmt->bindParam(":nom", $data['nom'], PDO::PARAM_STR);
+        
+        $stmt->execute();
+
+        $categorie = $this->getDBCategorieById($data['id_categorie']);
+
+        return $categorie;
+    }
+
+    public function deleteDBCategorie ($id){
+        $req = "DELETE FROM categorie
+                WHERE id_categorie = :id";
+                
+        $stmt = $this->pdo->prepare($req);
+
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+
+    public function updateDBCategorie ($id, $data){
+        $req = "UPDATE categorie
+                SET id_categorie = :id_categorie, nom = :nom
+                WHERE id_categorie = :id";
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindParam(":id_categorie", $data['id_categorie'], PDO::PARAM_INT);
+        $stmt->bindParam(":nom", $data['nom'], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
 }

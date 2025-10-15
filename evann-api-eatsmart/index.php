@@ -60,12 +60,37 @@ else {
             }
             break;
         case "categories" : 
-            if (isset($url[1])) {
-                $categorieController->getCategorieById($url[1]);
-            } if (isset($url[2]) && $url[2] =="articles"){
-                $categorieController->getArticleByCategorieId($url[1]);
-            } else {
-                print_r($categorieController->getAllCategories());
+            switch ($method){
+                case "GET":
+                    if (isset($url[1])) {
+                        $categorieController->getCategorieById($url[1]);
+                    } if (isset($url[2]) && $url[2] =="articles"){
+                        $categorieController->getArticleByCategorieId($url[1]);
+                    } else {
+                        print_r($categorieController->getAllCategories());
+                    }
+                    break;
+                case "POST":
+                    $data = json_decode(file_get_contents("php://input"),true);
+                    $categorieController->createCategorie($data);
+                    break;              
+                case "DELETE":
+                    if (isset($url[1])) {
+                        $categorieController->deleteCategorie($url[1]);
+                    } else {
+                        http_response_code(400);
+                        echo json_encode(["message"=> "ID de la categorie manquant dans l'URL"]);
+                    }
+                    break;
+                case "PUT":
+                    if (isset($url[1])) {
+                        $data = json_decode(file_get_contents("php://input"),true);
+                        $categorieController->updateCategorie($url[1],$data);
+                    } else {
+                        http_response_code(400);
+                        echo json_encode(["message"=> "ID de la categorie manquant dans l'URL"]);
+                    }
+                    break;
             }
             break;
         case "commandes" : 
