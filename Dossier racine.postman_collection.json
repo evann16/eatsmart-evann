@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "3491b9c9-ed1e-4075-92b2-0fdcc724e4ef",
+		"name": "Dossier racine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48519070",
+		"_collection_link": "https://evannfa-7908226.postman.co/workspace/evann-api-eatsmart~bb54f89c-5e07-4332-8c80-cceda5fb5071/collection/48519070-3491b9c9-ed1e-4075-92b2-0fdcc724e4ef?action=share&source=collection_link&creator=48519070"
+	},
+	"item": [
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "GetAllArticles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/eatsmart-evann/evann-api-eatsmart/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"eatsmart-evann",
+								"evann-api-eatsmart",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetArticlesById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/eatsmart-evann/evann-api-eatsmart/articles/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"eatsmart-evann",
+								"evann-api-eatsmart",
+								"articles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCommandeByArticleId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "addArticle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id_article\": \"36\",\r\n        \"nom\": \"Anchois 0.001cm\",\r\n        \"prix\": \"70.9000\",\r\n        \"description\": \"sauce tomate premium, origan, huile d'olive extra vierge, anchois, olive\",\r\n        \"id_categorie\": \"1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/eatsmart-evann/evann-api-eatsmart/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"eatsmart-evann",
+								"evann-api-eatsmart",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteArticle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id_article\": \"36\",\r\n        \"nom\": \"Anchois 0.001cm\",\r\n        \"prix\": \"70.9000\",\r\n        \"description\": \"sauce tomate premium, origan, huile d'olive extra vierge, anchois, olive\",\r\n        \"id_categorie\": \"1\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost/eatsmart-evann/evann-api-eatsmart/articles/36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"eatsmart-evann",
+								"evann-api-eatsmart",
+								"articles",
+								"36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateArticle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_article\": \"35\",\r\n    \"nom\": \"Anchois 0.jjjjjjjj001cm\",\r\n    \"prix\": \"79000\",\r\n    \"description\": \"sauce tomate premium, origan, huile d'olive extra vierge, anchois, olive\",\r\n    \"id_categorie\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost/eatsmart-evann/evann-api-eatsmart/articles/35",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"eatsmart-evann",
+								"evann-api-eatsmart",
+								"articles",
+								"35"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": []
+		},
+		{
+			"name": "Commandes",
+			"item": []
+		}
+	]
+}

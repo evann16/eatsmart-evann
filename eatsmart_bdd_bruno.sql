@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 24 sep. 2025 à 23:11
+-- Généré le : mer. 15 oct. 2025 à 23:46
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `eatsmart_bdd_evann`
+-- Base de données : `eatsmart_bdd_bruno`
 --
-CREATE DATABASE IF NOT EXISTS `eatsmart_bdd_evann` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `eatsmart_bdd_evann`;
+CREATE DATABASE IF NOT EXISTS `eatsmart_bdd_bruno` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `eatsmart_bdd_bruno`;
 
 -- --------------------------------------------------------
 
@@ -31,14 +31,14 @@ USE `eatsmart_bdd_evann`;
 
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
-  `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `id_article` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prix` decimal(19,4) DEFAULT NULL,
   `description` text,
   `id_categorie` int(11) NOT NULL,
   PRIMARY KEY (`id_article`),
   KEY `id_categorie` (`id_categorie`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `assoc_article_commande` (
   `quantite_article` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`id_article`,`id_commande`),
   KEY `id_commande` (`id_commande`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `assoc_article_commande`
@@ -102,15 +102,15 @@ CREATE TABLE IF NOT EXISTS `assoc_article_commande` (
 INSERT INTO `assoc_article_commande` (`id_article`, `id_commande`, `quantite_article`) VALUES
 (1, 1, '1.00'),
 (1, 2, '1.00'),
-(3, 2, '1.00'),
-(5, 2, '1.00'),
 (1, 3, '3.00'),
 (1, 4, '2.00'),
+(3, 2, '1.00'),
 (3, 4, '1.00'),
+(5, 2, '1.00'),
 (5, 4, '2.00'),
 (7, 5, '1.00'),
 (27, 5, '1.00'),
-(29, 5, '1.00');
+(33, 5, '1.00');
 
 -- --------------------------------------------------------
 
@@ -120,10 +120,10 @@ INSERT INTO `assoc_article_commande` (`id_article`, `id_commande`, `quantite_art
 
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
-  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
+  `id_categorie` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -144,12 +144,12 @@ INSERT INTO `categorie` (`id_categorie`, `nom`) VALUES
 
 DROP TABLE IF EXISTS `commande`;
 CREATE TABLE IF NOT EXISTS `commande` (
-  `id_commande` int(11) NOT NULL AUTO_INCREMENT,
+  `id_commande` int(11) NOT NULL,
   `date_commande` datetime DEFAULT NULL,
   `prix_total` double DEFAULT NULL,
   `etat` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_commande`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `commande`
@@ -161,6 +161,23 @@ INSERT INTO `commande` (`id_commande`, `date_commande`, `prix_total`, `etat`) VA
 (3, '2024-10-25 00:00:00', 23.7, 'en cours'),
 (4, '2024-10-25 00:00:00', 34.2, 'en cours'),
 (5, '2024-10-25 00:00:00', 17.7, 'en cours');
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `article`
+--
+ALTER TABLE `article`
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`);
+
+--
+-- Contraintes pour la table `assoc_article_commande`
+--
+ALTER TABLE `assoc_article_commande`
+  ADD CONSTRAINT `assoc_article_commande_ibfk_1` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`),
+  ADD CONSTRAINT `assoc_article_commande_ibfk_2` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_commande`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
