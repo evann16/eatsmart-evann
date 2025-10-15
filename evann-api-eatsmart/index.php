@@ -41,6 +41,13 @@ else {
                     $articleController->createArticle($data);
                     break;                  
                 }
+                case "DELETE":
+                    if (isset($url[1])) {
+                        $articleController->deleteArticle($url[1]);
+                    } else {
+                        http_response_code(400);
+                        echo json_encode(["message"=> "ID de l'article manquant dans l'URL"]);
+                    }
                 break;
         case "categories" : 
             if (isset($url[1])) {

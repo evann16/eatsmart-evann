@@ -50,4 +50,17 @@ class ArticleModel
 
         return $article;
     }
+
+    public function deleteDBArticle ($id){
+        $req = "DELETE FROM article
+                WHERE id_article = :id";
+                
+        $stmt = $this->pdo->prepare($req);
+
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
 }
