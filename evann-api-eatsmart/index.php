@@ -14,31 +14,38 @@ else {
 
     $url = explode("/", $_GET['page']);
     
-    print_r($url);
+    $method = $_SERVER["REQUEST_METHOD"];
 
     switch($url[0]) {
         case "articles" : 
+            switch ($method){
+                case "GET":
+                    if (isset($url[1])) {
 
-            if (isset($url[1])) {
+                        $articleController->getArticleById($url[1]);
 
-                $articleController->getArticleById($url[1]);
-
-            } if (isset($url[2])=="commandes"){
-                
-                $commandeIds = $articleController->getCommandeByArticleId($url[1]);
-                    
-                foreach ($commandeIds as $commandeId) {
-                    $commandeController->getCommandeById($commandeId);
+                        if (isset($url[2]) && $url[2] =="commandes"){
+                        
+                            $commandeIds = $articleController->getCommandeByArticleId($url[1]);
+                            
+                            foreach ($commandeIds as $commandeId) {
+                                $commandeController->getCommandeById($commandeId);
+                            }
+                        }
+                    } else {
+                        $articleController->getAllArticles();
+                    }
+                    break;  
+                case "POST":
+                    $data = json_decode(file_get_contents("php://input"),true);
+                    $articleController->createArticle($data);
+                    break;                  
                 }
-                
-            } else {
-                print_r($articleController->getAllArticles());
-            }
-            break;
+                break;
         case "categories" : 
             if (isset($url[1])) {
                 $categorieController->getCategorieById($url[1]);
-            } if (isset($url[2])=="artcles"){
+            } if (isset($url[2]) && $url[2] =="articles"){
                 $categorieController->getArticleByCategorieId($url[1]);
             } else {
                 print_r($categorieController->getAllCategories());
@@ -47,7 +54,7 @@ else {
         case "commandes" : 
             if (isset($url[1])) {
                 $commandeController->getCommandeById($url[1]);
-            } if (isset($url[2])=="articles"){
+            } if (isset($url[2]) && $url[2] =="articles"){
                 
                 $articleIds = $commandeController->getArticleByCommandeId($url[1]);
                     

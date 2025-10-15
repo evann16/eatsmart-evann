@@ -26,4 +26,10 @@ class ArticleController
         $commandeId = $this->model->getDBcommandeByArticleId($idArticle);
         return $commandeId;
     }
+
+    public function createArticle($data) {
+        $ligneArticle = $this->model->createDBArticle($data);
+        http_response_code(201);
+        echo json_encode($ligneArticle);
+    }
 }
