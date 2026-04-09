@@ -26,4 +26,11 @@ class CommandeController
         $articleId = $this->model->getDBarticleByCommandeId($idCommande);
         return $articleId;
     }
+
+    public function createCommande($data) {
+        $ligneCommande = $this->model->createDBCommande($data);
+        http_response_code(201);
+        echo json_encode($ligneCommande);
+    }
+
 }

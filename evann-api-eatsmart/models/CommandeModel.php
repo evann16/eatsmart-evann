@@ -27,6 +27,20 @@ class CommandeModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function createDBCommande($data){
+        $req = "INSERT INTO commande (date_commande, prix_total, etat)
+                VALUES (:date_commande, :prix_total, :etat)";
+        
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindParam(":date_commande", $data['date_commande']);
+        $stmt->bindParam(":prix_total", $data['prix_total']);
+        $stmt->bindParam(":etat", $data['etat']);   
+        $stmt->execute();
+        $id = $this->pdo->lastInsertId();
+
+        return $this->getDBCommandeById($id);
+    }
+
     public function getDBArticleByCommandeId($idCommande) {
         $stmt = $this->pdo->prepare("SELECT id_article FROM assoc_article_commande WHERE id_commande = :idCommande");
         $stmt->bindValue(":idCommande", $idCommande, PDO::PARAM_INT);

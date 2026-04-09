@@ -96,20 +96,28 @@ else {
             }
             break;
         case "commandes" : 
-            if (isset($url[1])) {
-                $commandeController->getCommandeById($url[1]);
-            } if (isset($url[2]) && $url[2] =="articles"){
-                
-                $articleIds = $commandeController->getArticleByCommandeId($url[1]);
-                    
-                foreach ($articleIds as $articleId) {
-                    
-                    $articleController->getArticleById($articleId);
+            switch ($method){
+                case "GET":
+                    if (isset($url[1])) {
+                        $commandeController->getCommandeById($url[1]);
+                    } if (isset($url[2]) && $url[2] =="articles"){
+                        
+                        $articleIds = $commandeController->getArticleByCommandeId($url[1]);
+                            
+                        foreach ($articleIds as $articleId) {
+                            
+                            $articleController->getArticleById($articleId);
 
-                } 
+                        } 
 
-            } else {
-                print_r($commandeController->getAllCommandes());
+                    } else {
+                        print_r($commandeController->getAllCommandes());
+                    }
+                    break;
+                case "POST":
+                    $data = json_decode(file_get_contents("php://input"),true);
+                    $commandeController->createCommande($data);
+                    break; 
             }
             break;
 
